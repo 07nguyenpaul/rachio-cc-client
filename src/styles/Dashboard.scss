@@ -1,0 +1,24 @@
+.dashboard {
+  align-content: start;
+  display: grid;
+  grid-gap: 16px;
+  margin: 100px 5% 0;
+  // grid-template-columns: repeat(3, 1fr);
+  // grid-template-rows: repeat(5, 1fr);
+}
+
+.zone-details__tile--details {
+  height: 300px;
+  margin: 16px 0;
+  width: 95%;
+}
+
+.zone-tile {
+  .bx--tile-content__above-the-fold {
+    margin-top: 8px;
+  }
+
+  & .bx--tile__chevron {
+    bottom: 1.5rem;
+  }
+}

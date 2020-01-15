@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/Header.scss';
 
 const Header = () => (
-  <header>
+  <div className="header">
     <h1>Rachio</h1>
-  </header>
+  </div>
 );
 
 export default Header;
