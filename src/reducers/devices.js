@@ -7,7 +7,7 @@ FETCH_DEVICES__SUCCESS,
 
 const initialState = {
   devices: [],
-  requesting: false,
+  requesting: false
 };
 
 export default createReducer(initialState, {
