@@ -15,7 +15,7 @@ export function setDuration(id, time) {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer 76980330-8f0b-4659-a341-527364acf134',
+        Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
       },
       body: JSON.stringify({
         id: id,

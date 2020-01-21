@@ -5,17 +5,16 @@ FETCH_DEVICES__REQUEST,
 FETCH_DEVICES__SUCCESS,
 } from './actionTypes';
 
-
 export function getDevices() {
   return async dispatch => {
     dispatch(fetchDevicesRequest());
     try {
-      const response = await fetch('https://api.rach.io/1/public/person/2ee8a9ca-741d-4b1a-add3-8a7683e5aa28', {
+      const response = await fetch(`https://api.rach.io/1/public/person/${process.env.REACT_APP_PERSON_ID}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'Bearer 76980330-8f0b-4659-a341-527364acf134',
+        Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
       },
     });
       let body = await response.json();
