@@ -1,3 +1,5 @@
+@import './_mixins/_variables';
+
 .device-tile {
   &.bx--accordion__item--active .bx--accordion__content {
     display: grid;
@@ -5,30 +7,146 @@
     grid-gap: 16px;
     padding: 24px;
   }
+
+  .bx--accordion__title {
+    font-size: 18px;
+    line-height: 2.25rem;
+  }
 }
 
-@media (max-width: 768px) {
+.zone-details__tile--details {
+  height: 500px;
+  margin: 16px 0;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+
+// INDIVIDUAL ZONE TILE
+.zone-tile {
+  .zone__img {
+    height: 200px;
+    margin: 8px auto;
+    width: 250px;
+  }
+
+  & .bx--tile__chevron {
+    bottom: 1.5rem;
+  }
+
+  .bx--tile-content__above-the-fold {
+    margin-top: 8px;
+  }
+
+  .zone__tile-name {
+    font-size: 16px;
+  }
+
+  .zone__form--duration {
+    position: relative;
+  }
+
+  .zone__form--submit-btn {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 2px solid $primary-blue;
+    height: 30px;
+    color: $primary-blue;
+    border-radius: 5px;
+  }
+
+  .zone__form--submit-btn:hover {
+    background: $primary-blue;
+    color: $primary-white;
+    border: 2px solid #00a7e1;
+  }
+
+  .zone__form--duration,
+  .zone__form--submit-btn {
+    margin: 8px 0;
+  }
+
+  .section-2 {
+    margin-top: 35px;
+  }
+}
+
+// SET DURATION FORM
+form {
+  .bx--number {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .bx--label {
+      display: flex;
+      align-self: end;
+      margin-bottom: 0px;
+      font-size: 14px;
+      grid-column: span 2;
+    }
+  }
+
+  .bx--number__controls {
+    display: none;
+  }
+
+  .bx--form-requirement {
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 1300px) {
   .device-tile {
     &.bx--accordion__item--active .bx--accordion__content {
-      background: purple;
+      grid-template-columns: repeat(3, 1fr);
       padding: 12px;
+    }
+
+    .zone-tile {
+      grid-column: span 1;
+
+      .zone__img {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .device-tile {
+    &.bx--accordion__item--active .bx--accordion__content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .zone-tile {
+      grid-column: span 1;
+
+      .zone__img {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .device-tile {
+    &.bx--accordion__item--active .bx--accordion__content {
+      padding: 0;
     }
 
     .zone-tile {
       grid-column: span 2;
     }
-  }
-}
 
-@media (max-width: 375px) {
-  .device-tile {
-    &.bx--accordion__item--active .bx--accordion__content {
-      background: purple;
-      padding: 0;
-    }
-
-    .zone-tile {
-      grid-column: span 4;
+    .zone__img {
+      margin: 0 auto;
+      width: 75%;
     }
   }
 }

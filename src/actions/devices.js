@@ -37,3 +37,7 @@ export function fetchDevicesSuccess(devices) {
 export function fetchDevicesFailure() {
   return { type: FETCH_DEVICES__FAILURE };
 };
+
+// export default getForcast() {
+  // https://api.rach.io/1/public/device/<device id>/forecast?units=US
+// }

@@ -2,8 +2,12 @@ import React from 'react';
 import { render } from 'react-dom'
 import App from './container/App';
 import * as serviceWorker from './serviceWorker';
+import './styles/index.scss';
+import WebFont from 'webfontloader';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
+WebFont.load({ google: { families: ['Material Icons'] } });
+
 
 const store = configureStore();
 

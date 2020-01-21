@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Dropdown } from 'carbon-components-react'
-import DeviceTiles from '../components/DeviceTiles';
+import ZoneTiles from '../components/ZoneTiles';
 // import { withRouter } from 'react-router';
-import { Accordion, AccordionItem, AccordionSkeleton, Button, ExpandableTile, TileAboveTheFoldContent, TileBelowTheFoldContent, Form, NumberInput } from 'carbon-components-react'
+import { Accordion, AccordionItem, AccordionSkeleton, DropdownSkeleton } from 'carbon-components-react'
 
 
 import { getDevices } from '../actions/devices';
@@ -17,7 +17,8 @@ export class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      time: 5,
+      zone: [],
     };
   }
 
@@ -47,83 +48,30 @@ export class Dashboard extends Component {
     )
   }
 
-  lowerCase(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  handleSubmit = (e) => {
-    console.log("HERE");
+  handleSubmit = (e, zone) => {
     e.preventDefault();
-    this.props.dispatch(setDuration("7fed6a5e-f1d1-47ab-b78e-aa86167c2692", 1));
+    this.props.dispatch(setDuration(zone.id, this.state.time));
     // this.props.dispatch(setDuration([{id: "7fed6a5e-f1d1-47ab-b78e-aa86167c2692", duration: 100, sortOrder: 1}, {id: "d754bd7d-73f4-417e-93ab-f54c355b3352", duration: 100, sortOrder: 2} ]));
   }
 
-  stopBubbling(event) {
-    event.stopPropagation();
+  handleChange = (e) => {
+    const { value } = e.target;
+    let convertToSecondValue = parseInt(value) * 60;
+
+    this.setState({ time: convertToSecondValue });
   }
 
   renderZones(zones) {
-    let displayZones = zones.map(zone => (
-      <ExpandableTile
-        className="zone-tile"
+    return zones.map(zone => (
+      <ZoneTiles
         key={zone.id}
-      >
-        <TileAboveTheFoldContent>
-          <div className="zone__tile--above">
-            <div className="zone__tile-name">{zone.name}</div>
-          </div>
-        </TileAboveTheFoldContent>
-        <TileBelowTheFoldContent>
-        <div
-          className="zone-details__tile--details"
-        >
-          <img className="zone__img" src={zone.imageUrl} alt="Italian Trulli" />
-          <div className="section-1">
-            <div>ID: {zone.id}</div>
-            <Form
-              onSubmit={e => this.handleSubmit(e)}
-              className="zone__form--duration"
-            >
-            <NumberInput
-              className="some-class"
-              id="number-input-1"
-              label="Set Zone Timer (minutes): "
-              max={180}
-              min={0}
-              step={1}
-              value={5}
-              onClick={(event) => this.stopBubbling(event)}
-            />
-              <button
-              type="button"
-              className="zone__form--submit-btn"
-              onClick={e => this.handleSubmit(e)}
-              >
-              SUBMIT
-              </button>
-            </Form>
-
-          </div>
-          <div className="section-2">
-            <div>Type of Crop: {zone.customCrop.name}</div>
-            <div>Type of Nozzle: {zone.customNozzle.name}</div>
-            <div>Amount of Shade: {zone.customShade.name}</div>
-            <div>Soil: {zone.customSoil.name}</div>
-          </div>
-          <div className="section-3">
-            <div>Depth of Water: {zone.depthOfWater}</div>
-            <div>Saturation Depth: {zone.saturatedDepthOfWater}</div>
-            <div>Efficiency: {zone.efficiency}</div>
-            <div>Root Depth: {zone.rootZoneDepth}</div>
-            <div>Yard Measurement (sqft): {zone.yardAreaSquareFeet}</div>
-          </div>
-          <div className="section-4">
-          </div>
-        </div>
-        </TileBelowTheFoldContent>
-      </ExpandableTile>
+        id={zone.id}
+        zone={zone}
+        handleChange={this.handleChange}
+        stopBubbling={this.stopBubbling}
+        handleSubmit={this.handleSubmit}
+      />
     ));
-    return displayZones;
   }
 
   renderDevices() {
@@ -139,8 +87,8 @@ export class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
-        {this.getDevices()}
-        {!this.props.devices ? (<AccordionSkeleton count={5} open/>) : this.renderDevices()}
+{/*        {!this.props.devices ? (<DropdownSkeleton inline={false}/>) : this.getDevices()}
+*/}        {!this.props.devices ? (<AccordionSkeleton count={5} open/>) : this.renderDevices()}
       </div>
     )
   }
