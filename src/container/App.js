@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header.js';
+import Footer from '../components/Footer.js';
 import Dashboard from './Dashboard.js';
 import ApplicationGrid from './ApplicationGrid.js';
 
@@ -11,6 +12,7 @@ function App() {
       <ApplicationGrid>
         <Header />
         <Dashboard />
+        <Footer />
       </ApplicationGrid>
     </div>
   );

@@ -2,8 +2,10 @@
 
 .dashboard {
   align-content: start;
+  background: $primary-white;
   display: grid;
   grid-gap: 16px;
+  grid-row: 2/3;
   margin: 100px 5% 0;
-  background: $primary-white;
+  padding: 34px 28px 0;
 }
