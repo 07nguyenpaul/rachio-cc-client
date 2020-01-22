@@ -90,14 +90,14 @@ export class Dashboard extends Component {
   }
 
   render() {
-    const { errorMessage, status } = this.props;
+    const { errorMessage, status, loading } = this.props;
     const { time, zoneName } = this.state;
     const conversionToMintues = time === 5 ? time : time / 60;
 
     return (
       <div className="dashboard">
 {/*        {!this.props.devices ? (<DropdownSkeleton inline={false}/>) : this.getDevices()}
-*/}        {!this.props.devices ? (<AccordionSkeleton count={5} open/>) : this.renderDevices()}
+*/}        {loading ? (<AccordionSkeleton count={5} open/>) : this.renderDevices()}
         <Modal
           className="confirmation__modal"
           open={this.state.openModal}
@@ -129,6 +129,7 @@ function mapStateToProps(state) {
     devices: state.devices.devices,
     status: state.zones.status,
     errorMessage: state.zones.error,
+    loading: state.devices.requesting,
   };
 }
 
