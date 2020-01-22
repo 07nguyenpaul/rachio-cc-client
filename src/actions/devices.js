@@ -3,6 +3,9 @@ import {
 FETCH_DEVICES__FAILURE,
 FETCH_DEVICES__REQUEST,
 FETCH_DEVICES__SUCCESS,
+FETCH_FORECAST__FAILURE,
+FETCH_FORECAST__REQUEST,
+FETCH_FORECAST__SUCCESS,
 } from './actionTypes';
 
 export function getDevices() {
@@ -18,7 +21,6 @@ export function getDevices() {
       },
     });
       let body = await response.json();
-      console.log('ACTIONS', body.devices);
       dispatch(fetchDevicesSuccess(body.devices));
     } catch (error) {
       dispatch(fetchDevicesFailure());
@@ -38,6 +40,34 @@ export function fetchDevicesFailure() {
   return { type: FETCH_DEVICES__FAILURE };
 };
 
-// export default getForcast() {
-  // https://api.rach.io/1/public/device/<device id>/forecast?units=US
-// }
+export function getForcast(deviceId) {
+  return async dispatch => {
+    dispatch(fetchForecastRequest());
+    try {
+      const response = await fetch(`https://api.rach.io/1/public/device/${deviceId}/forecast?units=US`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
+      },
+    });
+      let body = await response.json();
+      dispatch(fetchForecastSuccess(body.current, body.forecast));
+    } catch (error) {
+      dispatch(fetchForecastFailure());
+    }
+  };
+}
+
+export function fetchForecastRequest() {
+  return { type: FETCH_FORECAST__REQUEST };
+};
+
+export function fetchForecastSuccess(currentTemp, forecast) {
+  return { type: FETCH_FORECAST__SUCCESS, currentTemp, forecast };
+};
+
+export function fetchForecastFailure() {
+  return { type: FETCH_FORECAST__FAILURE };
+};

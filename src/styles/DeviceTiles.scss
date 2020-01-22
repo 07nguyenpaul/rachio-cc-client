@@ -54,6 +54,10 @@
     position: relative;
   }
 
+  .bx--number input[type="number"]:focus {
+    outline: 2px solid $primary-blue;
+  }
+
   .zone__form--submit-btn {
     background: transparent;
     border: 2px solid $primary-blue;

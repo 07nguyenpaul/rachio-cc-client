@@ -7,7 +7,7 @@ import ZoneTiles from '../components/ZoneTiles';
 import { Accordion, AccordionItem, AccordionSkeleton, DropdownSkeleton, Modal } from 'carbon-components-react'
 
 
-import { getDevices } from '../actions/devices';
+import { getDevices, getForcast } from '../actions/devices';
 import { setDuration } from '../actions/zones';
 
 import '../styles/Dashboard.scss';
@@ -28,7 +28,7 @@ export class Dashboard extends Component {
     this.props.dispatch(getDevices());
   }
 
-  getDevices() {
+  getDevices = () => {
     let deviceList = [];
     this.props.devices.map(device => {
       return deviceList.push(device.name)
@@ -64,7 +64,7 @@ export class Dashboard extends Component {
     this.setState({ time: convertToSecondValue });
   }
 
-  renderZones(zones) {
+  renderZones = (zones) => {
     return zones.map(zone => (
       <ZoneTiles
         key={zone.id}
@@ -75,7 +75,7 @@ export class Dashboard extends Component {
     ));
   }
 
-  renderDevices() {
+  renderDevices = () => {
     return this.props.devices.map(device => (
       <Accordion key={device.id} className="accordion--devices">
         <AccordionItem title={device.name} className="device-tile">
