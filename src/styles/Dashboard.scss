@@ -8,4 +8,15 @@
   grid-row: 2/3;
   margin: 100px 5% 0;
   padding: 34px 28px 0;
+
+  .bx--modal-content {
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .bx--modal-close:focus {
+    border-color: $primary-blue;
+  }
 }

@@ -16,6 +16,10 @@
   .bx--accordion__arrow {
     margin-top: 8px;
   }
+
+  .bx--tile--expandable:focus {
+    outline: 2px solid $primary-blue;
+  }
 }
 
 .zone-details__tile--details {
