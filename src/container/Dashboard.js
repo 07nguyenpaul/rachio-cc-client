@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Dropdown } from 'carbon-components-react'
 import ZoneTiles from '../components/ZoneTiles';
-// import { withRouter } from 'react-router';
-import { Accordion, AccordionItem, AccordionSkeleton, DropdownSkeleton, Modal } from 'carbon-components-react'
+import { Accordion, AccordionItem, AccordionSkeleton, Modal } from 'carbon-components-react'
 
 
 import { getDevices, getForcast } from '../actions/devices';
@@ -19,40 +18,20 @@ export class Dashboard extends Component {
     this.state = {
       openModal: false,
       time: 5,
-      zone: [],
+      zones: [],
       zoneName: ''
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.props.dispatch(getDevices());
+    this.props.getDevices();
   }
 
-  getDevices = () => {
-    let deviceList = [];
-    this.props.devices.map(device => {
-      return deviceList.push(device.name)
-    })
-
-    return (
-      <Dropdown
-        ariaLabel="Dropdown"
-        disabled={false}
-        id="dashboard__dropdown--devices"
-        items={deviceList}
-        label="Select Device"
-        itemToElement={null}
-        itemToString={ item => { if (typeof item === 'string') { return item; } return item ? item : ''; }}
-        onChange={function noRefCheck(){}}
-        size={undefined}
-        type="default"
-      />
-    )
-  }
-
-  handleSubmit = (e, zone) => {
+  handleSubmit(e, zone) {
     e.preventDefault();
-    this.props.dispatch(setDuration(zone.id, this.state.time));
+    this.props.setDuration(zone.id, this.state.time);
     this.setState({ openModal: !this.state.openModal, zoneName: zone.name });
     // this.props.dispatch(setDuration([{id: "7fed6a5e-f1d1-47ab-b78e-aa86167c2692", duration: 100, sortOrder: 1}, {id: "d754bd7d-73f4-417e-93ab-f54c355b3352", duration: 100, sortOrder: 2} ]));
   }
@@ -96,15 +75,14 @@ export class Dashboard extends Component {
 
     return (
       <div className="dashboard">
-{/*        {!this.props.devices ? (<DropdownSkeleton inline={false}/>) : this.getDevices()}
-*/}        {loading ? (<AccordionSkeleton count={5} open/>) : this.renderDevices()}
+        {loading ? (<AccordionSkeleton count={5} open/>) : this.renderDevices()}
         <Modal
           className="confirmation__modal"
           open={this.state.openModal}
           onClick={this.toggleModal}
           passiveModal={true}
           size="xs"
-          modalHeading="Zone has been set!"
+          modalHeading={status === '301' ? 'Zone has not been set!' : 'Zone has been set!'}
           modalLabel="Set Duration"
         >
           <p className="bx--modal-content__text">
@@ -133,4 +111,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = {
+  getDevices,
+  setDuration
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

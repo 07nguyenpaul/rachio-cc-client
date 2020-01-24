@@ -22,6 +22,7 @@ export const ZoneTiles = ({ zone, handleChange, handleSubmit }) => (
         />
         <div className="section-1">
           <Form
+            id={`zone__form--duration ${zone.id}`}
             onSubmit={e => handleSubmit(e, zone)}
             className="zone__form--duration"
           >
@@ -38,6 +39,7 @@ export const ZoneTiles = ({ zone, handleChange, handleSubmit }) => (
             />
             <button
               type="submit"
+              id={`zone__form--submit-btn ${zone.id}`}
               className="zone__form--submit-btn"
               onSubmit={e => handleSubmit(e, zone)}
               >
@@ -57,8 +59,6 @@ export const ZoneTiles = ({ zone, handleChange, handleSubmit }) => (
           <div>Efficiency: {zone.efficiency}</div>
           <div>Root Depth: {zone.rootZoneDepth}</div>
           <div>Yard Measurement (sqft): {zone.yardAreaSquareFeet}</div>
-        </div>
-        <div className="section-4">
         </div>
       </div>
     </TileBelowTheFoldContent>

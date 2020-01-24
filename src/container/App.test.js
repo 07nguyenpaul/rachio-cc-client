@@ -1,15 +1,32 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { Provider } from 'react-redux';
+import { render } from '@testing-library/react';
+
 import App from './App';
-import { configure, shallow } from 'enzyme';
+import configureStore from '../store/configureStore';
 
 configure({ adapter: new Adapter() });
 
 describe('Container: App ', () => {
-  it('should render without crashing', () => {
-    const wrapper = shallow(<App />);
+  const store = configureStore({});
 
-    expect(wrapper.exists()).toBe(true);
+  const wrapper = mount(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+
+  it('should render without crashing', () => {
+    expect(wrapper.find('App').exists()).toBe(true);
+  });
+
+  it('renders the header', () => {
+    expect(wrapper.find('Header').exists()).toBe(true);
+  });
+
+  it('renders the Dashboard container', () => {
+    expect(wrapper.find('Dashboard').exists()).toBe(true);
   });
 });

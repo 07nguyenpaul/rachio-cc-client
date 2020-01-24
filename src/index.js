@@ -5,11 +5,12 @@ import * as serviceWorker from './serviceWorker';
 import './styles/index.scss';
 import WebFont from 'webfontloader';
 import { Provider } from 'react-redux';
+import { createBrowserHistory } from 'history';
 import configureStore from './store/configureStore';
 WebFont.load({ google: { families: ['Material Icons'] } });
 
-
-const store = configureStore();
+const history = createBrowserHistory();
+const store = configureStore(history);
 
 const renderApp = () =>
   render(
@@ -19,9 +20,12 @@ const renderApp = () =>
     document.getElementById('root')
   );
 
-if (process.env.NODE_ENV !== 'production' && module.hot) {
-  module.hot.accept('./container/App', renderApp)
-};
+  if (module.hot) {
+    module.hot.accept('./container/App', () => {
+      const NextApp = require('./container/App').default;
+      render(NextApp);
+  });
+}
 
 renderApp();
 
