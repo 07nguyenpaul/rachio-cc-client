@@ -1,8 +1,16 @@
 ## Rachio Code Challenge Application
 
+Application is deployed through [Heroku](https://rachio-cc.herokuapp.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This application grabs data from [Rachio's public API](https://rachio.readme.io/v1.0/docs) and runs all device's zones/specific zones for a set amount of time.
+
+## Set Up
+- Obtain Authorization token and person uuid from [Rachio's docs](https://rachio.readme.io/docs/authentication)
+- Create .env file and replace missing values
+- Run `yarn install`
+- Run `yarn start` to deploy application locally
 
 ## Available Scripts
 
