@@ -8,6 +8,11 @@
     padding: 24px;
   }
 
+  .dashboard--zone-title {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid $primary-gray;
+  }
+
   .bx--accordion__title {
     font-size: 18px;
     line-height: 2.25rem;

@@ -3,7 +3,7 @@ import '../styles/Header.scss';
 
 const Footer = () => (
   <div className="footer">
-    © 2020
+    © 2020 Rachio inc.
   </div>
 );
 

@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import {
-SET_DURATION__FAILURE,
-SET_DURATION__REQUEST,
-SET_DURATION__SUCCESS,
+  SET_DURATION__FAILURE,
+  SET_DURATION__REQUEST,
+  SET_DURATION__SUCCESS,
 } from './actionTypes';
 
 export function setDuration(id, time) {

@@ -1,8 +1,7 @@
-import createReducer from './createReducer';
 import {
-SET_DURATION__FAILURE,
-SET_DURATION__REQUEST,
-SET_DURATION__SUCCESS,
+  SET_DURATION__FAILURE,
+  SET_DURATION__REQUEST,
+  SET_DURATION__SUCCESS
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -11,14 +10,16 @@ const initialState = {
   error: ''
 };
 
-export default createReducer(initialState, {
-  [SET_DURATION__REQUEST](state) {
-    return { ...state, status: null, requesting: true };
-  },
-  [SET_DURATION__SUCCESS](state, action) {
-    return { ...state, status: action.response, requesting: false };
-  },
-  [SET_DURATION__FAILURE](state, action) {
-    return { ...state, status: action.body.code, requesting: false, error: action.body.error};
+export default function zones(state=initialState, action) {
+  switch(action.type) {
+    case SET_DURATION__REQUEST:
+      return { ...state, status: null, requesting: true };
+    case SET_DURATION__SUCCESS:
+      const code = action.response;
+      return { ...state, status: code, requesting: false };
+    case SET_DURATION__FAILURE:
+      return { ...state, status: action.body.code, requesting: false, error: action.body.error};
+    default:
+      return state;
   }
-});
+};

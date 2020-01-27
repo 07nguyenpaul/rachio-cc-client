@@ -58,6 +58,7 @@ export class Dashboard extends Component {
     return this.props.devices.map(device => (
       <Accordion key={device.id} className="accordion--devices">
         <AccordionItem title={device.name} className="device-tile">
+          <h3 className="dashboard--zone-title">Zones</h3>
           {this.renderZones(device.zones)}
         </AccordionItem>
       </Accordion>
@@ -75,6 +76,7 @@ export class Dashboard extends Component {
 
     return (
       <div className="dashboard">
+        <h1 className="dashboard--device-title">Devices</h1>
         {loading ? (<AccordionSkeleton count={5} open/>) : this.renderDevices()}
         <Modal
           className="confirmation__modal"

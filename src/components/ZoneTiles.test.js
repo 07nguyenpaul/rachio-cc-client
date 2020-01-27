@@ -82,8 +82,8 @@ describe('Component: ZoneTiles ', () => {
 
     expect(wrapper.find('.bx--number__input-wrapper input').instance().value).toBe('5');
     wrapper.find('.bx--number__input-wrapper input').simulate('change', { target: { value: '7' }});
-    expect(wrapper.find('#zone__form--submit-btn')).toHaveLength(1);
-    wrapper.find('#zone__form--submit-btn').simulate('click')
+    expect(wrapper.find('.zone__form--submit-btn')).toHaveLength(1);
+    wrapper.find('.zone__form--submit-btn').simulate('click')
     expect(wrapper.find('.bx--number__input-wrapper input').instance().value).toBe('7');
   })
 });

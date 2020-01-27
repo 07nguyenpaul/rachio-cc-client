@@ -22,7 +22,6 @@ export const ZoneTiles = ({ zone, handleChange, handleSubmit }) => (
         />
         <div className="section-1">
           <Form
-            id={`zone__form--duration ${zone.id}`}
             onSubmit={e => handleSubmit(e, zone)}
             className="zone__form--duration"
           >
