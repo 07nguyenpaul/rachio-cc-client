@@ -62,7 +62,6 @@ export const ZoneTiles = ({ zone, handleChange, handleSubmit }) => (
       </div>
     </TileBelowTheFoldContent>
   </ExpandableTile>
-)
-
+);
 
 export default ZoneTiles;

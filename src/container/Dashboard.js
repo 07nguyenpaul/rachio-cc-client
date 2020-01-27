@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
+import { Accordion, AccordionItem, AccordionSkeleton, Modal } from 'carbon-components-react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Dropdown } from 'carbon-components-react'
-import ZoneTiles from '../components/ZoneTiles';
-import { Accordion, AccordionItem, AccordionSkeleton, Modal } from 'carbon-components-react'
 
-
-import { getDevices, getForcast } from '../actions/devices';
+import { getDevices } from '../actions/devices';
 import { setDuration } from '../actions/zones';
+import ZoneTiles from '../components/ZoneTiles';
 
 import '../styles/Dashboard.scss';
-
 
 export class Dashboard extends Component {
   constructor(props) {
@@ -18,7 +15,6 @@ export class Dashboard extends Component {
     this.state = {
       openModal: false,
       time: 5,
-      zones: [],
       zoneName: ''
     };
 
@@ -33,7 +29,6 @@ export class Dashboard extends Component {
     e.preventDefault();
     this.props.setDuration(zone.id, this.state.time);
     this.setState({ openModal: !this.state.openModal, zoneName: zone.name });
-    // this.props.dispatch(setDuration([{id: "7fed6a5e-f1d1-47ab-b78e-aa86167c2692", duration: 100, sortOrder: 1}, {id: "d754bd7d-73f4-417e-93ab-f54c355b3352", duration: 100, sortOrder: 2} ]));
   }
 
   handleChange = (e) => {
@@ -58,6 +53,7 @@ export class Dashboard extends Component {
     return this.props.devices.map(device => (
       <Accordion key={device.id} className="accordion--devices">
         <AccordionItem title={device.name} className="device-tile">
+          {/* ADD FORECAST FOR EACH DEVICE WITH "/getforecast" */}
           <h3 className="dashboard--zone-title">Zones</h3>
           {this.renderZones(device.zones)}
         </AccordionItem>
@@ -102,6 +98,10 @@ export class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  getDevices: PropTypes.func,
+  loading: PropTypes.bool,
+  status: PropTypes.number,
+  errorMessage: PropTypes.string
 };
 
 function mapStateToProps(state) {

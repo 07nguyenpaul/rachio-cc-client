@@ -10,7 +10,6 @@ export function setDuration(id, time) {
     dispatch(setDurationRequest());
     try {
       const response = await fetch('https://api.rach.io/1/public/zone/start', {
-      // const response = await fetch('https://api.rach.io/1/public/zone/start_multiple', {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
