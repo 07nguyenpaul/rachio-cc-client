@@ -65,16 +65,25 @@ describe('Component: ZoneTiles ', () => {
     expect(wrapper.find('.zone__tile-name').render().text()).toBe('Zone 1');
     expect(wrapper.find('.zone__img').prop('src')).toBe('https://prod-media-photo.rach.io/8107d244-1176-44a4-9a7e-d1de3b803f82');
 
-    expect(wrapper.find('.section-2').childAt(0).render().text()).toBe('Type of Crop: Cool Season Grass');
-    expect(wrapper.find('.section-2').childAt(1).render().text()).toBe('Type of Nozzle: FIXED_SPRAY_HEAD');
-    expect(wrapper.find('.section-2').childAt(2).render().text()).toBe('Amount of Shade: LOTS_OF_SUN');
-    expect(wrapper.find('.section-2').childAt(3).render().text()).toBe('Soil: LOAM');
+    expect(wrapper.find('.zone__tile--details-section-2').childAt(0).render().text()).toBe('Type of Crop:');
+    expect(wrapper.find('.zone__tile--details-section-2').childAt(1).render().text()).toBe('Cool Season Grass');
+    expect(wrapper.find('.zone__tile--details-section-2').childAt(2).render().text()).toBe('Type of Nozzle:');
+    expect(wrapper.find('.zone__tile--details-section-2').childAt(3).render().text()).toBe('FIXED_SPRAY_HEAD');
+    expect(wrapper.find('.zone__tile--details-section-2').childAt(4).render().text()).toBe('Amount of Shade:');
+    expect(wrapper.find('.zone__tile--details-section-2').childAt(5).render().text()).toBe('LOTS_OF_SUN');
+    expect(wrapper.find('.zone__tile--details-section-2').childAt(6).render().text()).toBe('Soil:');
+    expect(wrapper.find('.zone__tile--details-section-2').childAt(7).render().text()).toBe('LOAM');
 
-    expect(wrapper.find('.section-3').childAt(0).render().text()).toBe('Depth of Water: 1.3');
-    expect(wrapper.find('.section-3').childAt(1).render().text()).toBe('Saturation Depth: 1.43');
-    expect(wrapper.find('.section-3').childAt(2).render().text()).toBe('Efficiency: 0.8');
-    expect(wrapper.find('.section-3').childAt(3).render().text()).toBe('Root Depth: 15.24');
-    expect(wrapper.find('.section-3').childAt(4).render().text()).toBe('Yard Measurement (sqft): 46');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(0).render().text()).toBe('Depth of Water:');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(1).render().text()).toBe('1.3');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(2).render().text()).toBe('Saturation Depth:');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(3).render().text()).toBe('1.43');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(4).render().text()).toBe('Efficiency:');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(5).render().text()).toBe('0.8');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(6).render().text()).toBe('Root Depth:');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(7).render().text()).toBe('15.24');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(8).render().text()).toBe('Yard Measurement (sqft):');
+    expect(wrapper.find('.zone__tile--details-section-3').childAt(9).render().text()).toBe('46');
   });
 
   it('should change duration value and submit', () => {

@@ -5,7 +5,7 @@ import '../styles/DeviceTiles.scss';
 
 export const ZoneTiles = ({ zone, handleChange, handleSubmit }) => (
   <ExpandableTile
-    className="zone-tile"
+    className="zone__tile"
     key={zone.id}
   >
     <TileAboveTheFoldContent>
@@ -20,7 +20,7 @@ export const ZoneTiles = ({ zone, handleChange, handleSubmit }) => (
           src={zone.imageUrl}
           alt={`{zone.name}`}
         />
-        <div className="section-1">
+        <div className="zone__tile--details-section-1">
           <Form
             onSubmit={e => handleSubmit(e, zone)}
             className="zone__form--duration"
@@ -46,18 +46,27 @@ export const ZoneTiles = ({ zone, handleChange, handleSubmit }) => (
             </button>
           </Form>
         </div>
-        <div className="section-2">
-          <div>Type of Crop: {zone.customCrop.name}</div>
-          <div>Type of Nozzle: {zone.customNozzle.name}</div>
-          <div>Amount of Shade: {zone.customShade.name}</div>
-          <div>Soil: {zone.customSoil.name}</div>
+        <div className="zone__tile--details zone__tile--details-section-2">
+          <div className="zone--details-label">Type of Crop:</div>
+          <div className="zone--details-value">{zone.customCrop.name}</div>
+          <div className="zone--details-label">Type of Nozzle:</div>
+          <div className="zone--details-value">{zone.customNozzle.name}</div>
+          <div className="zone--details-label">Amount of Shade:</div>
+          <div className="zone--details-value">{zone.customShade.name}</div>
+          <div className="zone--details-label">Soil:</div>
+          <div className="zone--details-value">{zone.customSoil.name}</div>
         </div>
-        <div className="section-3">
-          <div>Depth of Water: {zone.depthOfWater}</div>
-          <div>Saturation Depth: {zone.saturatedDepthOfWater}</div>
-          <div>Efficiency: {zone.efficiency}</div>
-          <div>Root Depth: {zone.rootZoneDepth}</div>
-          <div>Yard Measurement (sqft): {zone.yardAreaSquareFeet}</div>
+        <div className="zone__tile--details zone__tile--details-section-3">
+          <div className="zone--details-label">Depth of Water:</div>
+          <div className="zone--details-value">{zone.depthOfWater}</div>
+          <div className="zone--details-label">Saturation Depth:</div>
+          <div className="zone--details-value">{zone.saturatedDepthOfWater}</div>
+          <div className="zone--details-label">Efficiency:</div>
+          <div className="zone--details-value">{zone.efficiency}</div>
+          <div className="zone--details-label">Root Depth:</div>
+          <div className="zone--details-value">{zone.rootZoneDepth}</div>
+          <div className="zone--details-label">Yard Measurement (sqft):</div>
+          <div className="zone--details-value">{zone.yardAreaSquareFeet}</div>
         </div>
       </div>
     </TileBelowTheFoldContent>

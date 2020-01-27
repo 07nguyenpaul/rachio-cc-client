@@ -30,13 +30,13 @@
 .zone-details__tile--details {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 550px;
   margin: 16px 0;
   width: 95%;
 }
 
 // INDIVIDUAL ZONE TILE
-.zone-tile {
+.zone__tile {
   .zone__img {
     height: 200px;
     margin: 8px auto;
@@ -88,8 +88,22 @@
     margin: 8px 0;
   }
 
-  .section-2 {
-    margin-top: 35px;
+  .zone__tile--details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    line-height: 24px;
+  }
+
+  .zone--details-label {
+    grid-column: 1/2;
+  }
+  .zone--details-value {
+    grid-column: 2/3;
+    text-align: right;
+  }
+
+  .zone__tile--details-section-2 {
+    margin-top: 40px;
   }
 }
 
@@ -125,7 +139,7 @@ form {
       padding: 12px;
     }
 
-    .zone-tile {
+    .zone__tile {
       grid-column: span 1;
 
       .zone__img {
@@ -141,7 +155,7 @@ form {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .zone-tile {
+    .zone__tile {
       grid-column: span 1;
 
       .zone__img {
@@ -157,7 +171,7 @@ form {
       padding: 0;
     }
 
-    .zone-tile {
+    .zone__tile {
       grid-column: span 2;
     }
 
